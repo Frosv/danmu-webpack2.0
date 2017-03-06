@@ -7,15 +7,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   devtool: 'eval',
+  //入口文件
   entry: {
     play: './src/play/index.js',
     list: './src/list/list.js',
     commons: ['jquery']
   },
+  //编译后输出文件
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name]-[hash:8].js'
   },
+  //本地服务器配置
   devServer: {
     contentBase: path.join(__dirname, "dist"),//基础引用地址
     compress: true,//使用gzip压缩
@@ -26,6 +29,7 @@ const config = {
     // headers:{"FrosV":"FUOK♂YOU"}
     hot: true
   },
+  //模块化
   module: {
     rules: [{
       test: /\.(js|jsx)$/,
@@ -56,6 +60,7 @@ const config = {
       use: 'url-loader'
     }]
   },
+  //插件
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'play.html',
