@@ -1,3 +1,4 @@
+//引入需要的模块
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
@@ -9,14 +10,14 @@ const config = {
   devtool: 'eval',
   //入口文件
   entry: {
-    play: './src/play/index.js',
+    play: './src/play/index.js',//单个文件入口
     list: './src/list/list.js',
-    commons: ['jquery']
+    commons: ['jquery']//公共文件
   },
   //编译后输出文件
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name]-[hash:8].js'
+    path: path.resolve(__dirname, 'dist'),//输出文件夹
+    filename: '[name]-[hash:8].js'//输出文件名
   },
   //本地服务器配置
   devServer: {
@@ -27,15 +28,15 @@ const config = {
     // contentBase: [path.join(__dirname, "public"), path.join(__dirname, "assets")],
     //多个文件夹配置方式
     // headers:{"FrosV":"FUOK♂YOU"}
-    hot: true
+    hot: true//热处理
   },
   //模块化
   module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      use: 'babel-loader'
+    rules: [{//读取规则
+      test: /\.(js|jsx)$/,//匹配js
+      use: 'babel-loader'//使用babel编译
     }, {
-      test: /\.css$/,
+      test: /\.css$/,//匹配css
       use: ExtractTextWebpackPlugin.extract({
         fallback: "style-loader",
         use: "css-loader"
@@ -62,11 +63,11 @@ const config = {
   },
   //插件
   plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'play.html',
-      template: './src/play/play.html',
-      chunks: ['play', 'commons'],
-      inject: 'body'
+    new HtmlWebpackPlugin({//html注入文件插件
+      filename: 'play.html',//文件名
+      template: './src/play/play.html',//渲染模板
+      chunks: ['play', 'commons'],//原型
+      inject: 'body'//？？？
     }),
     new HtmlWebpackPlugin({
       filename: 'list.html',
@@ -74,8 +75,8 @@ const config = {
       chunks: ['list', 'commons'],
       inject: 'body'
     }),
-    new ExtractTextWebpackPlugin('styles.css'),
-    new webpack.ProvidePlugin({
+    new ExtractTextWebpackPlugin('styles.css'),//css渲染模板
+    new webpack.ProvidePlugin({//？？？
       $: 'jquery',
       jQuery: 'jquery',
       _: 'lodash',
