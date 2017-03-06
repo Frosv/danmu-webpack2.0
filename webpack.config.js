@@ -17,9 +17,14 @@ const config = {
     filename: '[name]-[hash:8].js'
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 8080
+    contentBase: path.join(__dirname, "dist"),//基础引用地址
+    compress: true,//使用gzip压缩
+    port: 8080,//端口号
+    host:"0.0.0.0",//允许外部访问（然而我为什么访问不了。）
+    // contentBase: [path.join(__dirname, "public"), path.join(__dirname, "assets")],
+    //多个文件夹配置方式
+    // headers:{"FrosV":"FUOK♂YOU"}
+    hot: true
   },
   module: {
     rules: [{
