@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 const config = {
+  devtool: 'eval',
   entry: {
     play: './src/play/index.js',
     list: './src/list/list.js',
@@ -16,10 +17,9 @@ const config = {
     filename: '[name]-[hash:8].js'
   },
   devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    progress: true
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 8080
   },
   module: {
     rules: [{
@@ -53,13 +53,13 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename:'play.html',
+      filename: 'play.html',
       template: './src/play/play.html',
       chunks: ['play', 'commons'],
       inject: 'body'
     }),
     new HtmlWebpackPlugin({
-      filename:'list.html',
+      filename: 'list.html',
       template: './src/list/list.html',
       chunks: ['list', 'commons'],
       inject: 'body'

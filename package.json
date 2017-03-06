@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clear": "rm -rf dist",
-    "start": "npm run clear && webpack --progress --profile --colors --display-origins --display-chunks --display-entrypoints --display-modules --display-exclude"
-
+    "start": "npm run clear && webpack --progress --profile --colors --display-origins --display-chunks --display-entrypoints --display-modules --display-exclude",
+    "go":"webpack-dev-server"
   },
   "repository": {
     "type": "git",
