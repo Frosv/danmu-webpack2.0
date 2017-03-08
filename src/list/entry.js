@@ -1,5 +1,6 @@
 require('../../node_modules/bootstrap/dist/css/bootstrap.css');
 //css文件引入
+require('../commons.css');
 require('./css/list.css');
 
 

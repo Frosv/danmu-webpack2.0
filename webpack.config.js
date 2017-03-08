@@ -4,28 +4,20 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-//多条目css
-
-
-
-// const extractPlay = new　 ExtractTextWebpackPlugin　('./src/play/css/play.css');
-// const extractList = new　 ExtractTextWebpackPlugin　('./src/list/css/list.css');
-
-
 
 
 const config = {
   devtool: 'eval',
   //入口文件
   entry: {
-    play: './src/play/index.js', //单个文件入口
-    list: './src/list/list.js',
+    play: './src/play/entry.js', //单个文件入口
+    list: './src/list/entry.js',
     commons: ['jquery'] //公共文件
   },
   //编译后输出文件
   output: {
     path: path.resolve(__dirname, 'dist'), //输出文件夹
-    filename: '[name]-[hash:8].js' //输出文件名
+    filename: 'js/[name]-[hash:8].js' //输出文件名
   },
   //本地服务器配置
   devServer: {
@@ -40,10 +32,7 @@ const config = {
   },
   //模块化
   module: {
-    rules: [{ //读取规则
-      test: /\.(js|jsx)$/, //匹配js
-      use: 'babel-loader' //使用babel编译
-    }, {
+    rules: [{
       test: /\.css$/, //匹配css
       // use: 'css-loader'
       use: ExtractTextPlugin.extract({
@@ -51,22 +40,19 @@ const config = {
       })
     }, {
       test: /\.(png|jpg|gif)$/,
-      use: 'url-loader'
+      use: 'file-loader?name=static/img/[name]-[hash:8].[ext]'
+    },{
+      test: /\.(woff|woff2)\??.*$/,
+      loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=application/font-woff'
     }, {
-      test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-      use: 'url-loader'
-    }, {
-      test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-      use: 'url-loader'
-    }, {
-      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      use: 'url-loader'
+      test: /\.ttf\??.*$/,
+      loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=application/octet-stream'
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      use: 'file-loader'
+      use: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]'
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      use: 'url-loader'
+      use: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=image/svg+xm'
     }]
   },
   //插件
@@ -75,13 +61,13 @@ const config = {
       filename: 'play.html', //文件名
       template: './src/play/play.html', //渲染模板
       chunks: ['play', 'commons'], //原型
-      inject: 'body' //？？？
+      // inject: 'body' //注入位置
     }),
     new HtmlWebpackPlugin({
       filename: 'list.html',
       template: './src/list/list.html',
       chunks: ['list', 'commons'],
-      inject: 'body'
+      // inject: 'body'
     }),
     new webpack.ProvidePlugin({ //？？？
       $: 'jquery',
@@ -89,9 +75,7 @@ const config = {
       _: 'lodash',
       lodash: 'lodash'
     }),
-    new ExtractTextPlugin('styles.css')
-    // extractPlay,
-    // extractList
+    new ExtractTextPlugin('css/[name]-[hash:8].css')
   ]
 }
 
