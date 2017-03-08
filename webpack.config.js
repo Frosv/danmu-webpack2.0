@@ -36,11 +36,12 @@ const config = {
       test: /\.css$/, //匹配css
       // use: 'css-loader'
       use: ExtractTextPlugin.extract({
-        use: 'css-loader'
+        fallback: 'style-loader',
+        use: 'css-loader?id=css'
       })
     }, {
       test: /\.(png|jpg|gif)$/,
-      use: 'file-loader?name=static/img/[name]-[hash:8].[ext]'
+      loader: 'file-loader?name=static/img/[name]-[hash:8].[ext]'
     },{
       test: /\.(woff|woff2)\??.*$/,
       loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=application/font-woff'
@@ -48,11 +49,11 @@ const config = {
       test: /\.ttf\??.*$/,
       loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=application/octet-stream'
     }, {
-      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      use: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]'
+      test: /\.eot\??.*$/,
+      loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]'
     }, {
-      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      use: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=image/svg+xm'
+      test: /\.svg\??.*$/,
+      loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=image/svg+xm'
     }]
   },
   //插件
