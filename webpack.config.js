@@ -24,7 +24,7 @@ const config = {
     contentBase: path.join(__dirname, "dist"), //基础引用地址
     compress: true, //使用gzip压缩
     port: 8080, //端口号
-    host: "0.0.0.0", //允许外部访问（然而我为什么访问不了。）
+    //host: "0.0.0.0", //允许外部访问（然而我为什么访问不了。）
     // contentBase: [path.join(__dirname, "public"), path.join(__dirname, "assets")],
     //多个文件夹配置方式
     // headers:{"FrosV":"FUOK♂YOU"}
@@ -37,23 +37,23 @@ const config = {
       // use: 'css-loader'
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: 'css-loader?id=css'
+        loader: 'css-loader?id=css'
       })
     }, {
       test: /\.(png|jpg|gif)$/,
       loader: 'file-loader?name=static/img/[name]-[hash:8].[ext]'
     },{
       test: /\.(woff|woff2)\??.*$/,
-      loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=application/font-woff'
+      loader: 'file-loader?name=/static/fonts/[name]-[hash:8].[ext]&minetype=application/font-woff'
     }, {
       test: /\.ttf\??.*$/,
-      loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=application/octet-stream'
+      loader: 'file-loader?name=/static/fonts/[name]-[hash:8].[ext]&minetype=application/octet-stream'
     }, {
       test: /\.eot\??.*$/,
-      loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]'
+      loader: 'file-loader?name=/static/fonts/[name]-[hash:8].[ext]'
     }, {
       test: /\.svg\??.*$/,
-      loader: 'file-loader?name=static/fonts/[name]-[hash:8].[ext]&minetype=image/svg+xm'
+      loader: 'file-loader?name=/static/fonts/[name]-[hash:8].[ext]&minetype=image/svg+xm'
     }]
   },
   //插件
@@ -76,7 +76,7 @@ const config = {
       _: 'lodash',
       lodash: 'lodash'
     }),
-    new ExtractTextPlugin('css/[name]-[hash:8].css')
+    new ExtractTextPlugin('static/css/[name]-[hash:8].css')
   ]
 }
 
