@@ -25,26 +25,26 @@ input,
 textarea,
 th,
 td {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 input,
 select,
 label {
-    vertical-align: middle;
-    outline: none;
+  vertical-align: middle;
+  outline: none;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 button,
 input,
 select,
 textarea {
-    font-size: 100%;
+  font-size: 100%;
 }
 
 body,
@@ -52,8 +52,30 @@ button,
 input,
 select,
 textarea {
-    color: #2e2e2e;
-    font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, Tahoma, "Microsoft YaHei", "\5fae\8f6f\96c5\9ed1", sans-serif;
+  color: #2e2e2e;
+  font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, Tahoma, "Microsoft YaHei", "\5fae\8f6f\96c5\9ed1", sans-serif;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden
+}
+
+.clearfix {
+  *+height: 1%;
+}
+
+.content-box {
+  margin: 50px auto 20px;
+  width: 1190px;
+  min-width: 1190px;
+}
+
+.lf {
+  float: left;
 }
 
 

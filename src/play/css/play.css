@@ -54,7 +54,6 @@
 .user-input {
   width: 80% !important;
   float: left;
-  height: 20px;
   padding: 10px;
 }
 
@@ -212,4 +211,5 @@
 .input-error{
   margin-bottom: 0 !important;
   margin-top: 10px;
+  display: none;
 }

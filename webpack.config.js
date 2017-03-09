@@ -17,7 +17,8 @@ const config = {
   //编译后输出文件
   output: {
     path: path.resolve(__dirname, 'dist'), //输出文件夹
-    filename: 'js/[name]-[hash:8].js' //输出文件名
+    filename: 'js/[name]-[hash:8].js', //输出文件名,
+    // publicPath: 'font'
   },
   //本地服务器配置
   devServer: {
@@ -27,7 +28,6 @@ const config = {
     //host: "0.0.0.0", //允许外部访问（然而我为什么访问不了。）
     // contentBase: [path.join(__dirname, "public"), path.join(__dirname, "assets")],
     //多个文件夹配置方式
-    // headers:{"FrosV":"FUOK♂YOU"}
     hot: true //热处理
   },
   //模块化
